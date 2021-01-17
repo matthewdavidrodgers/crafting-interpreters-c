@@ -171,7 +171,7 @@ static void skipWhitespace() {
                 }
                 break;
             default:
-                break;
+                return;
         }
     }
 }
