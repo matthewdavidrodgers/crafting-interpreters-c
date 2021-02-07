@@ -2,13 +2,14 @@
 #define clox_chunk_h
 
 #include "common.h"
-#include "memory.h"
 #include "value.h"
 
 typedef enum {
   OP_CONSTANT,
   OP_NEGATE,
   OP_PRINT,
+  OP_JUMP_IF_FALSE,
+  OP_JUMP,
   OP_NOT,
   OP_NIL,
   OP_TRUE,
@@ -26,6 +27,8 @@ typedef enum {
   OP_SUBTRACT,
   OP_MULTIPLY,
   OP_DIVIDE,
+  OP_LOOP,
+  OP_CALL,
   OP_RETURN
 } OpCode;
 
