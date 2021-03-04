@@ -1,6 +1,7 @@
 SOURCE_DIR := src
 BUILD_DIR := build
 NAME := clox
+CC := clang
 
 CFLAGS := -std=c99 -Wall -Wextra -Werror -Wno-unused-parameter
 
