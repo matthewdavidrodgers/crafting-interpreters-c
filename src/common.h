@@ -9,5 +9,7 @@
 
 #undef DEBUG_PRINT_CODE
 #undef DEBUG_TRACE_EXECUTION
+#define DEBUG_STRESS_GC
+#define DEBUG_LOG_GC
 
 #endif
