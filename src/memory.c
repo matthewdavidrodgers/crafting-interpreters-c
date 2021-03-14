@@ -20,9 +20,9 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 #endif
     }
 
-    if (vm.bytesAllocated > vm.nextGC) {
-        collectGarbage();
-    }
+    // if (vm.bytesAllocated > vm.nextGC) {
+    //     collectGarbage();
+    // }
 
     if (newSize == 0) {
         free(pointer);
@@ -40,6 +40,10 @@ static void freeObject(Obj* object) {
 #endif
 
     switch (object->type) {
+        case OBJ_CLASS: {
+            FREE(ObjClass, object);
+            break;
+        }
         case OBJ_CLOSURE: {
             ObjClosure* closure = (ObjClosure*)object;
             FREE_ARRAY(ObjUpvalue*, closure->upvalues, closure->upvalueCount);
@@ -104,6 +108,11 @@ void blackenObject(Obj* object) {
 #endif
 
     switch (object->type) {
+        case OBJ_CLASS: {
+            ObjClass* klass = (ObjClass*)object;
+            markObject((Obj*)klass->name);
+            break;
+        }
         case OBJ_UPVALUE:
             markValue(((ObjUpvalue*)object)->closed);
             break;
